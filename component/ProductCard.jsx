@@ -1,19 +1,18 @@
 import React from 'react'
 import Image from 'next/image';
-import box from '../assets/box.jpeg';
+import Link from 'next/link';
+
 
 const ProductCard = () => {
   return (
-     <div
-            // onClick={() => { router.push('/product/' + product._id); scrollTo(0, 0) }}
-            className="flex flex-col items-start gap-0.5 max-w-[200px] w-full cursor-pointer"
+     <div className='bg-gray-500/10 '
+            // onClick={() => { router.push('/product/' + 1); scrollTo(0, 0) }}
         >
-            <div className="cursor-pointer group relative bg-gray-500/10 rounded-lg w-full h-52 flex items-center justify-center">
+            <div className="cursor-pointer group relative  rounded-lg w-full h-72 flex items-center justify-center">
                 <Image
-                    src={box}
-                    alt=''
+                   src="/box.jpeg" alt="img"
                     className="group-hover:scale-105 transition object-cover w-4/5 h-4/5 md:w-full md:h-full"
-                    width={800}
+                    width={600}
                     height={800}
                 />
                
@@ -28,7 +27,9 @@ const ProductCard = () => {
 
             <div className="text-right w-full mt-1">
                 <button className=" max-sm:hidden px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-slate-50 transition cursor-pointer">
-                   Details
+                 <Link href='product/123'>
+                 Details
+                 </Link>  
                 </button>
             </div>
         </div>

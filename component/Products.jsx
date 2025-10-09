@@ -1,13 +1,15 @@
+"use client"
 import React from 'react'
 import ProductCard from './ProductCard'
 
 const Products = () => {
+  const products = [" " , " " , " " , " "]
   return (
      <div className="flex flex-col items-center pt-14">
       <p className="text-2xl font-medium text-left w-full">Popular products</p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 flex-col items-center gap-6 mt-6 pb-14 w-full">
-        <ProductCard/>
-        {/* {products.map((product, index) => <ProductCard key={index} product={product} />)} */}
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 flex-col items-center gap-16 mt-6 pb-14 w-full">
+        {/* <ProductCard/> */}
+        {products.map((product, index) => <ProductCard key={index} product={product} />)}
       </div>
       <button
       //  onClick={() => { router.push('/all-products') }}
