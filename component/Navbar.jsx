@@ -13,7 +13,7 @@ const Navbar = () => {
     <>
       <Link href="/" className="hover:text-primary transition">Home</Link>
       <Link href="/products" className="hover:text-primary transition">Shop</Link>
-      <Link href="/add" className="hover:text-primary transition">Add</Link>
+      <Link href="/add-gift" className="hover:text-primary transition">Add</Link>
     </>
   );
 
