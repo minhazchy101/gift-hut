@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-secondary border-b border-gray-300 px-6 md:px-16 lg:px-32 py-4 relative">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-around ">
         {/* Logo */}
         <h1 className="text-2xl font-bold text-primary">Gift Hut</h1>
 
