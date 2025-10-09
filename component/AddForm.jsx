@@ -1,17 +1,18 @@
 "use client";
 
-// import { addAction } from "@/utils/addAction";
+import { addAction } from "@/utils/addAction";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import upload from "../assets/upload_icon.svg";
 
 const AddForm = () => {
   const router = useRouter();
   const [imageURL, setImageURL] = useState("");
 
   async function clientAddAction(formData) {
-    // const { error, success } = await addAction(formData);
+    const { error, success } = await addAction(formData);
 
     if (error) {
       toast.error(error);
@@ -25,85 +26,89 @@ const AddForm = () => {
   }
 
   const handleImageChange = (e) => {
-    // const file = e.target.files?.[0];
-    // if (file) {
-    //   const fileSize = file.size;
-    //   if (Math.round(fileSize / 1024) > 1024) {
-    //     toast.error("Image greater than 1mb is not allowed.");
-    //   } else {
-    //     setImageURL(URL.createObjectURL(file));
-    //   }
-    // }
+    const file = e.target.files?.[0];
+    if (file) {
+      const fileSize = file.size;
+      if (Math.round(fileSize / 1024) > 1024) {
+        toast.error("Image larger than 1MB is not allowed.");
+      } else {
+        setImageURL(URL.createObjectURL(file));
+      }
+    }
   };
 
   return (
     <form
       action={clientAddAction}
-      className="w-full max-w-xl mx-auto flex flex-col justify-center items-center space-y-4 mt-3 md:mt-5"
+      className="w-full max-w-2xl mx-auto flex flex-col space-y-6 p-6 bg-white rounded-lg shadow-xl mt-6"
     >
+      {/* Image Preview */}
       {imageURL && (
         <Image
           src={imageURL}
-          alt="img"
-          width={1000}
-          height={1000}
-          className="max-w-full max-h-72 object-cover object-center rounded-lg"
+          alt="Selected image"
+          width={800}
+          height={400}
+          className="w-50 h-68 mx-auto object-cover rounded-md border border-primary/70 p-3"
         />
       )}
 
+      {/* Product Image Upload */}
       <div className="flex flex-col w-full">
-        <label>Product Image:</label>
+        <label className="mb-1 font-semibold">Product Image</label>
         <input
           type="file"
           accept="image/*"
           name="image"
           onChange={handleImageChange}
-          className="w-full px-3 py-1.5 md:py-2 text-[#252422] rounded-lg bg-white border border-gray-500"
+          className="block cursor-pointer w-full text-sm text-gray-700
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-md file:border-0
+            file:text-sm file:font-semibold
+            file:bg-primary file:text-white
+            hover:file:bg-primary/90
+            border border-gray-300 rounded-md "
         />
       </div>
 
-{/* name & prices */}
-      <div className="flex justify-between gap-5 w-full">
-
+      {/* Product Name */}
       <div className="flex flex-col w-full">
-        <label>Name:</label>
+        <label className="mb-1 font-semibold">Product Name</label>
         <input
           type="text"
           name="name"
-          placeholder="Enter the product name"
-          className="w-full px-3 py-1.5 md:py-2 text-[#252422] rounded-lg bg-white border border-gray-500"
+          placeholder="Enter product name"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
 
+      {/* Price */}
       <div className="flex flex-col w-full">
-        <label>Price:</label>
+        <label className="mb-1 font-semibold">Price (min ₹30)</label>
         <input
           type="number"
           min={30}
           name="price"
-          placeholder="Enter the product price"
-          className="w-full px-3 py-1.5 md:py-2 text-[#252422] rounded-lg bg-white border border-gray-500"
+          placeholder="Enter product price"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
 
-      </div>
-
-
-     
-
+      {/* Description */}
       <div className="flex flex-col w-full">
-        <label>Description:</label>
+        <label className="mb-1 font-semibold">Description</label>
         <textarea
           name="description"
-          placeholder="Enter the product description"
-          rows={4} cols={5}
-          className="w-full px-3 py-1.5 md:py-2 text-[#252422] rounded-lg bg-white border border-gray-500"
+          placeholder="Enter product description"
+          rows={4}
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary resize-none"
         ></textarea>
       </div>
 
+      {/* Submit Button */}
       <button
         type="submit"
-        className="w-full bg-primary text-white px-3 py-2 rounded-md cursor-pointer"
+        className="w-full bg-primary text-white font-semibold py-2 rounded-md hover:bg-primary/90 transition duration-200"
       >
         Add Product
       </button>
