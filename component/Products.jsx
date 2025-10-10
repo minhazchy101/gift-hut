@@ -1,9 +1,17 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
+import axios from 'axios';
 
 const Products = () => {
-  const products = [" " , " " , " " , " "]
+    const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/fetch-products")
+      .then((response) => setProducts(response.data.products));
+  }, []);
+  console.log(products)
   return (
      <div className="flex flex-col items-center pt-14">
       <p className="text-2xl font-medium text-left w-full">Popular products</p>

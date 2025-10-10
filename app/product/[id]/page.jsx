@@ -1,11 +1,12 @@
-import { useParams } from 'next/navigation';
+"use client"
+import { useParams } from 'next/navigation'
 import React from 'react'
 
-const page = () => {
-    const { id } = useParams();
+const ProductDetails = () => {
+    const {id} = useParams()
   return (
-    <div>page</div>
+    <div>ProductDetails</div>
   )
 }
 
-export default page
+export default ProductDetails
