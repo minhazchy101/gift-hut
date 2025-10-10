@@ -1,12 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import ProductCard from './ProductCard'
 import axios from 'axios';
-import Title from './Title';
-import { useRouter } from 'next/navigation';
+import Title from '@/component/Title';
+import ProductCard from '@/component/ProductCard';
+
 
 const Products = () => {
-   const router = useRouter();
     const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -17,18 +16,14 @@ const Products = () => {
   
   return (
      <div className="flex flex-col items-center p-14 bg-light rounded-xl">
-      <Title title="Recent Products"/>
+      <Title title="All Products"/>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 flex-col items-center gap-16 mt-6 pb-14 w-full">
        
-       {products.slice(0, 8).map((product, index) => (
+       {products.map((product, index) => (
   <ProductCard key={index} product={product} />
 ))}
       </div>
-      <button
-       onClick={() => { router.push('/all-products') }}
-        className="mt-8 px-13 py-2 rounded-md cursor-pointer text-md text-primary border border-primary  hover:bg-primary hover:text-white transition ">
-        See more
-      </button>
+      
     </div>
 
 

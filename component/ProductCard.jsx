@@ -1,44 +1,55 @@
-"use client"
-import React from 'react'
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
+const ProductCard = ({ product }) => {
+  const router = useRouter();
+  const { _id, image, name, price } = product;
 
-const ProductCard = ({product}) => {
-     const router = useRouter();
-    console.log(product)
-    const {_id , image , name , price , description} = product ;
+  const [imgLoaded, setImgLoaded] = useState(false);
+
   return (
-     <div className='bg-gray-500/10 '
-            onClick={() => { router.push(`product/${_id}`); scrollTo(0, 0) }}
+    <div
+      className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer p-4"
+      onClick={() => {
+        router.push(`product/${_id}`);
+        scrollTo(0, 0);
+      }}
+    >
+      {/* Image Container */}
+      <div className="group relative w-full h-64 mb-4 overflow-hidden rounded-md bg-gray-100">
+        {!imgLoaded && (
+          <div className=" absolute inset-0 animate-pulse bg-gray-300" />
+        )}
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className={`object-cover group-hover:scale-105 transition-all duration-300${
+            imgLoaded ? "scale-100" : "scale-105"
+          }`}
+          onLoadingComplete={() => setImgLoaded(true)}
+        />
+      </div>
+
+      {/* Product Info */}
+      <h2 className="text-lg font-semibold text-gray-800 truncate">{name}</h2>
+
+      <div className="flex justify-between items-center mt-2">
+        <p className="text-secondary font-medium">₹{price}</p>
+
+        <Link
+          href={`product/${_id}`}
+          onClick={(e) => e.stopPropagation()} // Prevent card click
+          className="text-sm text-primary border border-primary px-3 py-1 rounded-full hover:bg-primary hover:text-white transition "
         >
-            <div className="cursor-pointer group relative  rounded-lg w-full h-72 flex items-center justify-center">
-                <Image
-                   src={image} alt="img"
-                    className="group-hover:scale-105 transition object-cover w-4/5 h-4/5 md:w-full md:h-full"
-                    width={600}
-                    height={800}
-                />
-               
-            </div>
+          Details
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-            <p className="md:text-base font-medium pt-2 w-full truncate">{name}</p>
-            
-            <div className="flex items-center gap-2">
-                <p className="text-xs">{price}</p>
-               
-            </div>
-
-            <div className="text-right w-full mt-1">
-                <button className=" max-sm:hidden px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-slate-50 transition cursor-pointer">
-                 <Link href={`product/${_id}`}>
-                 Details
-                 </Link>  
-                </button>
-            </div>
-        </div>
-  )
-}
-
-export default ProductCard
+export default ProductCard;

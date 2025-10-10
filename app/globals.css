@@ -2,14 +2,15 @@
 
 @theme{
    --color-primary : #ce2727 ;
-   --color-secondary : #F3E8FF ;
-   --color-accent : #10B981 ;
+   --color-secondary :  #10B981  ;
+   --color-accent :#F3E8FF;
    --color-light : #F1F5F5 ;
 }
 
 * {
     scroll-behavior: smooth;
 }
+
 
 
 

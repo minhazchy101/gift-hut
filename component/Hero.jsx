@@ -14,7 +14,7 @@ const Hero = () => {
         </p>
 
         <Link href="#gift">
-          <button className="mt-8 bg-primary text-white px-3 py-2 rounded-md cursor-pointer">
+          <button className="mt-8  px-3 py-2 rounded-md cursor-pointer text-sm text-primary border border-primary  hover:bg-primary hover:text-white transition ">
             Gift the Collection
           </button>
         </Link>
